@@ -1,0 +1,85 @@
+==== 音声解析結果（N=4096 と N=16384 の比較） ====
+
+[解析上の注意]
+- この録音はスマートフォンのマイクを使用している。
+- 録音環境によっては周囲の雑音が含まれている可能性がある。
+- 雑音が含まれている場合、周波数スペクトルに目的の音以外の周波数成分が現れる可能性がある。
+- DFTの最大ピークが必ずしも録音した音の基音を意味するとは限らない。
+- 周波数分解能が有限である場合、理論値と測定値に差が生じる可能性がある。
+- 解析結果は「録音された信号において観測されたピーク」として扱う。
+
+[対象音]
+target_source = List_of_recordings.csv (file number 27 = "C4-A♯4")
+  note = C4   theoretical_frequency_hz = 261.625565
+  note = A♯4   theoretical_frequency_hz = 466.163762
+peak_search_range_hz = ±10.000000  (各対象音の理論周波数付近ピークの探索範囲)
+
+[入力ファイル情報]
+sample_rate_hz  = 48000
+channels        = 2
+total_frames    = 368640
+
+========================================
+[N = 4096]
+analysis_start_time_sec  = 2.339833   (DFTに使用した区間の開始時刻)
+sample_count_N           = 4096
+frequency_resolution_hz  = 11.718750   (= sample_rate / N)
+dft_calculation_time_ms  = 955.985000
+
+--- 全体最大ピーク（DC除く、スペクトル全周波数中で最大） ---
+# 注意: 雑音や対象音以外に由来する可能性があり、基音であるとは限らない。
+global_peak_frequency_hz   = 257.812500
+global_peak_magnitude      = 34.511028
+matches_any_target_note    = yes  (全体最大ピークが、いずれかの対象音の理論周波数付近ピークと同一ビンとみなせるか)
+
+--- 対象音「C4」理論周波数付近のピーク（261.625565 Hz ± 10.000000 Hz） ---
+near_target_peak_frequency_hz [C4] = 257.812500
+near_target_peak_magnitude    [C4] = 34.511028
+measured_frequency_hz         [C4] = 257.812500
+error_hz                      [C4] = -3.813065
+error_percent                 [C4] = -1.457451
+cent_error                    [C4] = -25.417571
+
+--- 対象音「A♯4」理論周波数付近のピーク（466.163762 Hz ± 10.000000 Hz） ---
+near_target_peak_frequency_hz [A♯4] = 468.750000
+near_target_peak_magnitude    [A♯4] = 0.541582
+measured_frequency_hz         [A♯4] = 468.750000
+error_hz                      [A♯4] = 2.586238
+error_percent                 [A♯4] = 0.554792
+cent_error                    [A♯4] = 9.578200
+
+========================================
+[N = 16384]
+analysis_start_time_sec  = 2.339833   (DFTに使用した区間の開始時刻)
+sample_count_N           = 16384
+frequency_resolution_hz  = 2.929688   (= sample_rate / N)
+dft_calculation_time_ms  = 14603.375900
+
+--- 全体最大ピーク（DC除く、スペクトル全周波数中で最大） ---
+# 注意: 雑音や対象音以外に由来する可能性があり、基音であるとは限らない。
+global_peak_frequency_hz   = 260.742188
+global_peak_magnitude      = 133.875214
+matches_any_target_note    = yes  (全体最大ピークが、いずれかの対象音の理論周波数付近ピークと同一ビンとみなせるか)
+
+--- 対象音「C4」理論周波数付近のピーク（261.625565 Hz ± 10.000000 Hz） ---
+near_target_peak_frequency_hz [C4] = 260.742188
+near_target_peak_magnitude    [C4] = 133.875214
+measured_frequency_hz         [C4] = 260.742188
+error_hz                      [C4] = -0.883378
+error_percent                 [C4] = -0.337650
+cent_error                    [C4] = -5.855397
+
+--- 対象音「A♯4」理論周波数付近のピーク（466.163762 Hz ± 10.000000 Hz） ---
+near_target_peak_frequency_hz [A♯4] = 465.820312
+near_target_peak_magnitude    [A♯4] = 0.783887
+measured_frequency_hz         [A♯4] = 465.820312
+error_hz                      [A♯4] = -0.343449
+error_percent                 [A♯4] = -0.073676
+cent_error                    [A♯4] = -1.275967
+
+========================================
+[計算時間の比較: N=4096 → N=16384]
+N_ratio                       = 4.000000
+theoretical_time_ratio(N^2)   = 16.000000   (計算量がO(N^2)であることから予想される倍率)
+actual_time_ratio             = 15.275737   (実測: N=16384の時間 / N=4096の時間)
+frequency_resolution_ratio    = 4.000000   (Δf(N=4096) / Δf(N=16384), 分解能がどれだけ細かくなったか)

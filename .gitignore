@@ -1,0 +1,31 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.log
+*.nav
+*.out
+*.run.xml
+*.snm
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# コンパイル済み実行ファイル（ソースがあれば十分なため）
+*.exe
+*.o
+
+# 作業用の一時ログ
+build_log.txt
+*_converted.log
+ffprobed_*.log
+all_wav_converted.log
+
+# OS/エディタ由来のゴミファイル
+.DS_Store
+Thumbs.db
+*.swp
+
